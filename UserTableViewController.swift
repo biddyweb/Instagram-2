@@ -11,11 +11,17 @@ import UIKit
 class UserTableViewController: UITableViewController {
     var Users = [""]
     var Following = [Bool]()
+    var Refresher:UIRefreshControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         checkUsers()
+        
+        Refresher = UIRefreshControl()
+        Refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        Refresher.addTarget(self, action: "pullToRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(Refresher)
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -97,9 +103,15 @@ class UserTableViewController: UITableViewController {
                         } else {
                             println(error)
                         }
+                        
+                        self.Refresher.endRefreshing()
                     }
                 }
             }
         }
+    }
+    
+    func pullToRefresh() {
+        checkUsers()
     }
 }
