@@ -138,7 +138,7 @@
             </objects>
             <point key="canvasLocation" x="-37" y="757"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Users-->
         <scene sceneID="YGV-L2-vrc">
             <objects>
                 <tableViewController id="F5N-Ls-XGY" customClass="UserTableViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
@@ -159,7 +159,13 @@
                             <outlet property="delegate" destination="F5N-Ls-XGY" id="JwA-hN-dEy"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="V9j-Ws-I2d"/>
+                    <navigationItem key="navigationItem" title="Users" id="V9j-Ws-I2d">
+                        <barButtonItem key="rightBarButtonItem" title="Post" id="oTu-W4-Ef4">
+                            <connections>
+                                <segue destination="o58-C9-amc" kind="show" id="PEB-nc-nGe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
@@ -184,6 +190,86 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Od-cK-kzG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="401" y="757"/>
+        </scene>
+        <!--Post Image-->
+        <scene sceneID="8za-EP-Q1T">
+            <objects>
+                <viewController title="Post Image" id="o58-C9-amc" customClass="PostViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="97D-gT-tee"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Dt-um-bBz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Aon-N6-d2Z">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dam-cv-hFI">
+                                <rect key="frame" x="85" y="94" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="3uN-7l-Irk"/>
+                                    <constraint firstAttribute="width" constant="150" id="h2B-hu-Eu2"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5HO-M4-eEI">
+                                <rect key="frame" x="99" y="269" width="122" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="FYn-hk-nm5"/>
+                                    <constraint firstAttribute="width" constant="122" id="mwR-VK-QHR"/>
+                                </constraints>
+                                <state key="normal" title="Choose An Image">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="chooseImagePress:" destination="o58-C9-amc" eventType="touchUpInside" id="gu0-u9-OHE"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What do you want to share?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t4f-rl-9zi">
+                                <rect key="frame" x="16" y="331" width="288" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="288" id="B2F-vl-XJI"/>
+                                    <constraint firstAttribute="height" constant="30" id="BPu-uV-REd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lk2-uk-dWK">
+                                <rect key="frame" x="109" y="390" width="102" height="30"/>
+                                <color key="backgroundColor" red="0.15127560334426604" green="0.44558632037312562" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="o94-TM-dEX"/>
+                                    <constraint firstAttribute="width" constant="102" id="pSn-a5-jYy"/>
+                                </constraints>
+                                <state key="normal" title="Post Image">
+                                    <color key="titleColor" red="0.94212348896332476" green="1" blue="0.99291285706733401" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="postImagePress:" destination="o58-C9-amc" eventType="touchUpInside" id="XwE-H2-su6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5HO-M4-eEI" firstAttribute="top" secondItem="dam-cv-hFI" secondAttribute="bottom" constant="25" id="5ca-0l-oyB"/>
+                            <constraint firstItem="t4f-rl-9zi" firstAttribute="top" secondItem="5HO-M4-eEI" secondAttribute="bottom" constant="32" id="8vi-sv-Sgg"/>
+                            <constraint firstItem="dam-cv-hFI" firstAttribute="top" secondItem="97D-gT-tee" secondAttribute="bottom" constant="30" id="J2v-7i-orc"/>
+                            <constraint firstAttribute="centerX" secondItem="5HO-M4-eEI" secondAttribute="centerX" id="Qw2-zv-YAr"/>
+                            <constraint firstItem="lk2-uk-dWK" firstAttribute="top" secondItem="t4f-rl-9zi" secondAttribute="bottom" constant="29" id="luq-FF-1Op"/>
+                            <constraint firstAttribute="centerX" secondItem="t4f-rl-9zi" secondAttribute="centerX" id="m7U-SJ-GFA"/>
+                            <constraint firstAttribute="centerX" secondItem="dam-cv-hFI" secondAttribute="centerX" id="sNL-Ee-pFe"/>
+                            <constraint firstAttribute="centerX" secondItem="lk2-uk-dWK" secondAttribute="centerX" id="w58-KV-1Jt"/>
+                        </constraints>
+                    </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="ImageView" destination="dam-cv-hFI" id="bul-Zx-qDP"/>
+                        <outlet property="ShareText" destination="t4f-rl-9zi" id="c6s-nM-Re6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2LU-1e-mcG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1153" y="757"/>
         </scene>
     </scenes>
 </document>
