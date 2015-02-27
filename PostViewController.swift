@@ -22,6 +22,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UIIm
         
         self.presentViewController(image, animated: true, completion: nil)
     }
+    
     @IBAction func postImagePress(sender: AnyObject) {
         var error = ""
         if !PhotoSelected {
@@ -35,6 +36,7 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UIIm
         } else {
             var post = PFObject(className: "Post")
             post["Title"] = ShareText.text
+            post["Username"] = PFUser.currentUser().username
             
             post.saveInBackgroundWithBlock({ (success, err) -> Void in
                 if success {
@@ -44,7 +46,11 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UIIm
                     
                     post.saveInBackgroundWithBlock({ (suc, errMsg) -> Void in
                         if suc {
-                            println("Post Successfully!")
+                            self.displayAlert("Image Posted", error: "Your image has been posted successfully!")
+                            
+                            self.PhotoSelected = false
+                            self.ImageView.image = nil
+                            self.ShareText.text = ""
                         } else {
                             self.displayAlert("Could Not Post Image", error: "Please try again later.")
                         }
