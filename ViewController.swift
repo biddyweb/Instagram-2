@@ -54,6 +54,14 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.navigationController?.navigationBarHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -133,7 +141,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             self.stopActivity()
             
             if signupError == nil {
-                // Hooray! Let them use the app now.
+                self.performSegueWithIdentifier("JumpToUserTable", sender: self)
             } else {
                 var error = ""
                 if let errorString = signupError.userInfo?["error"] as? NSString {
@@ -158,6 +166,7 @@ class ViewController: UIViewController, UINavigationControllerDelegate, UIImageP
             if user != nil {
                 // Do stuff after successful login.
                 println("Logged in!")
+                self.performSegueWithIdentifier("JumpToUserTable", sender: self)
             } else {
                 // The login failed. Check error to see why.
                 var error = ""

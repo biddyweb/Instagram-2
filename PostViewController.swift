@@ -61,6 +61,13 @@ class PostViewController: UIViewController, UINavigationControllerDelegate, UIIm
             })
         }
     }
+    
+    
+    @IBAction func logoutPress(sender: AnyObject) {
+        PFUser.logOut()
+        self.performSegueWithIdentifier("logout", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
